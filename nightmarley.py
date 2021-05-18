@@ -82,7 +82,7 @@ while True:
 
     # Suspend activity when the account reaches Reddit's comment rate limit.
     except praw.exceptions.APIException as e:
-        for subexception in e.items:
+        for subexception in e:
             print("Subexception: " + subexception.error_type + "\n")
             if subexception.error_type == 'RATELIMIT':
                 delay = re.search(r"(\d+) minutes", subexception.message)
