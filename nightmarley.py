@@ -21,7 +21,7 @@ while True:
         for comment in reddit.subreddit('nightmarleybot+titanfolk').stream.comments():
             # Ignore the bot's own comments and the ones that the bot has already replied to.
             if comment.saved:
-                print("---\n" + comment.id + " is saved already.")
+                print("---\n" + comment.id + " is already saved.")
                 continue
             if comment.author.name.lower() == 'nightmarley-bot':
                 continue
