@@ -88,20 +88,20 @@ while True:
                 delay = re.search(r"(\d+) minutes", subexception.message)
                 if delay:
                     delay_seconds = int(delay.group(1)) * 60 + 60
-                    print("Delaying replies for " + delay.group(0) + ".")
+                    print("---\nComment rate limit reached; sleeping for " + delay.group(0) + ".")
                     time.sleep(delay_seconds)
                 else:
                     delay = re.search(r"(\d+) seconds", subexception.message)
                     delay_seconds = int(delay.group(1)) + 60
-                    print("Delaying replies for", delay_seconds, "seconds.")
+                    print("---\nComment rate limit reached; sleeping for", delay_seconds, "seconds.")
                     time.sleep(delay_seconds)
     # Suspend activity for 1 minute in the event of a server error.
     except prawcore.exceptions.ServerError as e:
-        print("Reddit is down (http error %s), sleeping..." % e.response)
+        print("---\n[ServerError] Reddit is down (HTTP Error %s); sleeping for 1min." % e.response.status_code)
         time.sleep(60)
         pass
     except prawcore.exceptions.ResponseException as e:
-        print("Reddit is down (HTTP %s), sleeping..." % e.response)
+        print("---\n[ResponseException] HTTP Error %s; sleeping for 1min." % e.response.status_code)
         time.sleep(60)
         pass
     else:
