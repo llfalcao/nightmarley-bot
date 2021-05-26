@@ -26,13 +26,8 @@ while True:
             if comment.author.name.lower() == 'nightmarley-bot':
                 continue
 
-            # Ignore comments in the chapter discussion threads,
-            # as well as any comment containing "NIGHTMARE" in all caps, to reduce spamming.
-            if comment.submission.id in ['mmfzi8', 'mkdkiy', 'mm2c8e', 'mi265l']:
-                continue
-            if 'NIGHTMARE' in comment.body:
-                print("---\n[" + comment.id + " : " + comment.author.name
-                      + "] Spam: All caps; ignoring...")
+            # Ignore comments in the chapter discussion threads to reduce spamming.
+            if comment.submission.id in ['mi265l', 'mkdkiy', 'mm2c8e', 'mmfzi8']:
                 continue
 
             comment_lower = comment.body.lower()
@@ -66,7 +61,6 @@ while True:
                 continue
 
             if keyword is not None:
-                # Not printing the comment on the console until chapter 139 is out, to avoid spoilers.
                 print("---\n[" + comment.id + "] Keyword match: " + keyword)
                 comment.save()
                 comment.reply(keywords[keyword] + footer)
@@ -74,7 +68,6 @@ while True:
                 continue
 
             if re.search(r'^(?=.*\bmarcel\b)(?=.*\bbrother\b)', comment_lower):
-                # Not printing the comment on the console until chapter 139 is out, to avoid spoilers.
                 print("---\n[" + comment.id + "] Keyword match: Marcel/Brother")
                 comment.save()
                 comment.reply(random.choice(marcel_responses) + footer)
