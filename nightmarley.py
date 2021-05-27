@@ -5,7 +5,6 @@ import re
 import time
 
 reddit = praw.Reddit('nightmarley-bot', user_agent="console:Nightmarley-Bot:v1.0")
-# reddit.read_only = True
 
 keywords = {'nightmare': "> nightMare\n\n*nightMarley"}
 
@@ -60,6 +59,7 @@ while True:
                       + "] Spam: Keyword alone (" + keyword + "); ignoring...")
                 continue
 
+            # Reply to the comment once everything is checked and it's probably not spam
             if keyword is not None:
                 print("---\n[" + comment.id + "] Keyword match: " + keyword)
                 comment.save()
@@ -67,6 +67,7 @@ while True:
                 print("> Replied to " + comment.author.name)
                 continue
 
+            # If no 'nightmare' can be found in the comment, start looking for mentions of 'Marcel' and 'brother'
             if re.search(r'^(?=.*\bmarcel\b)(?=.*\bbrother\b)', comment_lower):
                 print("---\n[" + comment.id + "] Keyword match: Marcel/Brother")
                 comment.save()
