@@ -40,12 +40,6 @@ while True:
                           + "] Spam: Duplicate keyword (qty.: ", len(duplicates), "); ignoring...", sep='')
                     continue
 
-                # Ignore comments spamming "200K nightmare" to trigger both the AutoModerator and the Nightmarley Bot.
-                if '200k' in comment_lower:
-                    print("---\n[" + comment.id + " : " + comment.author.name
-                          + "] Spam: \"200k\"; ignoring...")
-                    continue
-
                 # Look for each keyword on the comment's body.
                 # The priority is based on how they're ordered in the dictionary,
                 # not as soon as a keyword is found.
@@ -57,6 +51,12 @@ while True:
             if keyword == comment_lower:
                 print("---\n[" + comment.id + " : " + comment.author.name
                       + "] Spam: Keyword alone (" + keyword + "); ignoring...")
+                continue
+
+            # Ignore comments spamming "200K nightmare" to trigger both the AutoModerator and the Nightmarley Bot.
+            if '200k' in comment_lower:
+                print("---\n[" + comment.id + " : " + comment.author.name
+                      + "] Spam: \"200k\"; ignoring...")
                 continue
 
             # Reply to the comment once everything is checked and it's probably not spam
