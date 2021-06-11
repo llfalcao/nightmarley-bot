@@ -37,10 +37,9 @@ while True:
                 keyword_count = re.findall(r'\b' + k.lower() + '(?=s| |$|.)', comment_lower)
                 if len(keyword_count) >= 2:
                     print("---\n[" + comment.id + " : " + comment.author.name
-                          + "] Spam: Duplicate keyword (", len(keyword_count), "x ", k.lower(), "); ignoring...", sep='')
+                          + "] Spam: Duplicate keyword (", len(keyword_count), "x ", k.lower(), ");"
+                          + " ignoring...", sep='')
                     continue
-                # Look for the first keyword that shows up in the comment
-                # (based on how they're ordered in the dictionary)
                 if len(keyword_count) == 1:
                     keyword = k
                     break
