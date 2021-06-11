@@ -34,7 +34,7 @@ while True:
             keyword = None
             for k in keywords:
                 # Prevent spam by finding duplicate keywords.
-                keyword_count = re.findall(r'' + k.lower() + '(?=s| |$|.)', comment_lower)
+                keyword_count = re.findall(r'\b' + k.lower() + '(?=s| |$|.)', comment_lower)
                 if len(keyword_count) >= 2:
                     print("---\n[" + comment.id + " : " + comment.author.name
                           + "] Spam: Duplicate keyword (", len(keyword_count), "x ", k.lower(), "); ignoring...", sep='')
