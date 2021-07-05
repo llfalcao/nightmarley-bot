@@ -15,8 +15,8 @@ marcel_responses = ["Who?",
 footer = "\n\n***\n\n*^I ^am ^~~free~~ ^a ^bot, ^and ^this ^action ^was ^performed ^automatically.*"
 
 while True:
-    print("Nightmarley-Bot is now running.")
     try:
+        print("Nightmarley-Bot is now running.")
         for comment in reddit.subreddit('nightmarleybot+titanfolk').stream.comments():
             # Ignore the bot's own comments and the ones that the bot has already replied to.
             if comment.saved:
