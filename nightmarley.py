@@ -78,12 +78,15 @@ while True:
                     print("---\nComment rate limit reached; sleeping for", delay_seconds, "seconds.")
                     time.sleep(delay_seconds)
     except prawcore.exceptions.ServerError as e:
-        print("---\n[ServerError] Reddit is down (HTTP Error %s); sleeping for 1min." % e.response.status_code)
-        time.sleep(60)
+        print("---\n[ServerError] Reddit is down (HTTP Error %s); sleeping for 2min." % e.response.status_code)
+        time.sleep(120)
         pass
     except prawcore.exceptions.ResponseException as e:
-        print("---\n[ResponseException] HTTP Error %s; sleeping for 1min." % e.response.status_code)
-        time.sleep(60)
+        print("---\n[ResponseException] HTTP Error %s; sleeping for 2min." % e.response.status_code)
+        time.sleep(120)
         pass
+    except prawcore.exceptions.RequestException as e:
+        print("---\n[RequestException] %s; sleeping for 5min." % e.original_exception)
+        time.sleep(300)
     else:
         raise Exception
