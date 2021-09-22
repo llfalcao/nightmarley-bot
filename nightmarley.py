@@ -88,5 +88,6 @@ while True:
     except prawcore.exceptions.RequestException as e:
         print("---\n[RequestException] %s; sleeping for 5min." % e.original_exception)
         time.sleep(300)
+        pass
     else:
         raise Exception
