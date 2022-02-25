@@ -44,12 +44,6 @@ while True:
                       + "] Spam: Keyword alone (" + keyword + "); ignoring...")
                 continue
 
-            # Ignore comments spamming "200K nightmare" to trigger both the AutoModerator and the Nightmarley Bot.
-            if '200k' in comment_lower:
-                print("---\n[" + comment.id + " : " + comment.author.name
-                      + "] Spam: \"200k\"; ignoring...")
-                continue
-
             if keyword is not None:
                 print("---\n[" + comment.id + "] Keyword match: " + keyword)
                 comment.save()
