@@ -21,6 +21,8 @@ while True:
             if comment.saved:
                 print("---\n" + comment.id + " is already saved.")
                 continue
+            if comment.author is None:
+                continue
             if comment.author.name.lower() == 'nightmarley-bot':
                 continue
 
