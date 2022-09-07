@@ -12,12 +12,12 @@ marcel_responses = ["Who?",
                     "Marcel? Never heard of him.",
                     ]
 
-footer = "\n\n***\n\n*^I ^am ^~~free~~ ^a ^bot, ^and ^this ^action ^was ^performed ^automatically.*"
+footer = "\n\n***\n\n*^(I)* *^(am)* *~~^(free)~~* *^(a)* *^(bot,)* *^(and)* *^(this)* *^(action)* *^(was)* *^(performed)* *^(automatically.)*"
 
 while True:
     try:
         print("Nightmarley-Bot is now running.")
-        for comment in reddit.subreddit('nightmarleybot+titanfolk').stream.comments():
+        for comment in reddit.subreddit('titanfolk').stream.comments():
             if comment.saved:
                 print("---\n" + comment.id + " is already saved.")
                 continue
